@@ -14,7 +14,7 @@ export default function Routes() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="home"
+          name="Home"
           component={Home}
           options={{
             title: "Pokédex",
@@ -50,22 +50,7 @@ export default function Routes() {
             ),
           }}
         />
-        <Stack.Screen
-          name="detail"
-          component={Detail}
-          options={{
-            title: "PokemonName",
-            headerTitleStyle: {
-              fontFamily: "Poppins_700Bold",
-              color: "#fff",
-            },
-            headerRight: () => (
-              <TouchableOpacity style={{ marginRight: 24 }}>
-                <Text style={{ color: "#fff" }}>'#' + '000'</Text>
-              </TouchableOpacity>
-            ),
-          }}
-        />
+        <Stack.Screen name="Detail" component={Detail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
