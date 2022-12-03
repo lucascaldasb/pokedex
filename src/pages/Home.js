@@ -16,7 +16,7 @@ export default function Home() {
       <View style={styles.header}>
         <View style={styles.inputArea}>
           <Feather name="search" size={20} color="#666666" />
-          <TextInput placeholder="Procurar" style={styles.input} />
+          <TextInput placeholder="Search" style={styles.input} />
         </View>
       </View>
 
