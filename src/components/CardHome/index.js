@@ -4,10 +4,10 @@ import React from "react";
 export default function CardHome(props) {
   return (
     <TouchableOpacity onPress={props.onClick}>
-      <View style={styles.container}>
-        <Text style={styles.idText}>#001</Text>
+      <View style={[styles.container, { borderColor: props.color }]}>
+        <Text style={[styles.idText, { color: props.color }]}>{props.id}</Text>
         <Image source={props.img} style={styles.homecardImg} />
-        <View style={styles.homecardArea}>
+        <View style={[styles.homecardArea, { backgroundColor: props.color }]}>
           <Text style={styles.homecardText}>{props.children}</Text>
         </View>
       </View>
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: "3%",
     alignItems: "center",
     justifyContent: "center",
-    borderColor: "#74CB48",
     borderWidth: 2,
     borderRadius: 8,
     justifyContent: "space-between",
@@ -33,7 +32,6 @@ const styles = StyleSheet.create({
     height: 65,
   },
   homecardArea: {
-    backgroundColor: "#74CB48",
     width: "107%",
     height: "25%",
     padding: 5,
@@ -50,7 +48,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     alignSelf: "center",
-    color: "#74CB48",
     fontSize: 8,
   },
 });

@@ -3,6 +3,10 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { ProgressBar } from "react-native-paper";
 
+import AboutDetail from "../components/AboutDetail/index";
+import PowerDetail from "../components/PowerDetail/index";
+import StatusDetail from "../components/StatusDetail/index";
+
 function Detail({ navigation }) {
   navigation.setOptions({
     headerTitle: "Informations",
@@ -10,7 +14,7 @@ function Detail({ navigation }) {
 
   return (
     <View>
-      <View style={styles.headerImg}>
+      <View style={[styles.headerImg, { backgroundColor: "#74CB48" }]}>
         <View style={{ flexDirection: "row", margin: 24 }}>
           <Text style={styles.pokemonName}>Bulbasaur</Text>
           <Text style={styles.pokemonId}>#001</Text>
@@ -22,111 +26,39 @@ function Detail({ navigation }) {
         <Image source={require("../assets/1.png")} style={styles.pokemonImg} />
 
         <View style={styles.info}>
-          <View style={styles.powers}>
-            <Text style={styles.firstPower}>Grass</Text>
-            <Text style={styles.secondPower}>Poison</Text>
-          </View>
-
-          <Text style={styles.about}>About</Text>
-
-          <View style={styles.infoAbout}>
-            <View>
-              <View style={styles.weightArea}>
-                <FontAwesome5 name="weight" size={20} color="black" />
-                <Text style={{ marginLeft: 8 }}>6,9 kg</Text>
-              </View>
-              <Text style={styles.weightText}>Width</Text>
-            </View>
-            <View>
-              <View style={styles.heightArea}>
-                <FontAwesome5 name="ruler-vertical" size={20} color="black" />
-                <Text style={{ marginLeft: 8 }}>0,7 m</Text>
-              </View>
-              <Text style={styles.heightText}>Height</Text>
-            </View>
-            <View>
-              <View style={styles.skillsArea}>
-                <Text
-                  style={{
-                    fontFamily: "Poppins_400Regular",
-                    fontSize: 10,
-                  }}
-                >
-                  Overgrow
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: "Poppins_400Regular",
-                    fontSize: 10,
-                  }}
-                >
-                  Clorophyll
-                </Text>
-              </View>
-              <Text style={styles.skillsText}>Skills</Text>
-            </View>
-          </View>
-
-          <Text style={styles.statusBase}>Status Base</Text>
-
           <View
             style={{
               flexDirection: "row",
-              justifyContent: "space-around",
-              marginTop: 20,
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <View style={styles.infoStatus}>
-              <Text style={styles.baseText}>HP</Text>
-              <Text style={styles.baseText}>ATK</Text>
-              <Text style={styles.baseText}>DEF</Text>
-              <Text style={styles.baseText}>SATK</Text>
-              <Text style={styles.baseText}>SDEF</Text>
-              <Text style={styles.baseText}>SPD</Text>
-            </View>
-
-            <View>
-              <Text style={styles.baseNumber}>045</Text>
-              <Text style={styles.baseNumber}>049</Text>
-              <Text style={styles.baseNumber}>049</Text>
-              <Text style={styles.baseNumber}>065</Text>
-              <Text style={styles.baseNumber}>065</Text>
-              <Text style={styles.baseNumber}>045</Text>
-            </View>
-
-            <View style={{ marginTop: 5 }}>
-              <ProgressBar
-                style={styles.progressBar}
-                color="#74CB48"
-                progress={0.45}
-              />
-              <ProgressBar
-                style={styles.progressBar}
-                color="#74CB48"
-                progress={0.49}
-              />
-              <ProgressBar
-                style={styles.progressBar}
-                color="#74CB48"
-                progress={0.49}
-              />
-              <ProgressBar
-                style={styles.progressBar}
-                color="#74CB48"
-                progress={0.65}
-              />
-              <ProgressBar
-                style={styles.progressBar}
-                color="#74CB48"
-                progress={0.65}
-              />
-              <ProgressBar
-                style={styles.progressBar}
-                color="#74CB48"
-                progress={0.45}
-              />
-            </View>
+            <PowerDetail color="#74CB48">Grass</PowerDetail>
+            <PowerDetail color="#A43E9E">Poison</PowerDetail>
           </View>
+
+          <Text style={[styles.about, { color: "#74CB48" }]}>About</Text>
+
+          <AboutDetail
+            weight="6,49"
+            height="0,7"
+            Fskill="Overgrow"
+            Sskill="Clorophyll"
+          />
+
+          <Text style={[styles.statusBase, { color: "#74CB48" }]}>
+            Status Base
+          </Text>
+
+          <StatusDetail
+            hp="045"
+            atk="049"
+            def="049"
+            satk="065"
+            sdef="065"
+            spd="045"
+            color="#74CB48"
+          />
         </View>
       </View>
     </View>
@@ -135,7 +67,6 @@ function Detail({ navigation }) {
 
 const styles = StyleSheet.create({
   headerImg: {
-    backgroundColor: "#74CB48",
     height: "100%",
     width: "100%",
   },
@@ -184,114 +115,17 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderRadius: 8,
   },
-  powers: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40,
-  },
-  firstPower: {
-    fontFamily: "Poppins_700Bold",
-    fontSize: 15,
-    marginRight: 16,
-    backgroundColor: "#74CB48",
-    color: "#fff",
-    width: 60,
-    height: 25,
-    textAlign: "center",
-  },
-  secondPower: {
-    fontFamily: "Poppins_700Bold",
-    fontSize: 15,
-    backgroundColor: "#A43E9E",
-    color: "#fff",
-    width: 60,
-    height: 25,
-    textAlign: "center",
-  },
   about: {
     marginTop: 20,
     textAlign: "center",
-    color: "#74CB48",
     fontFamily: "Poppins_700Bold",
     fontSize: 20,
-  },
-  infoAbout: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  weightArea: {
-    flexDirection: "row",
-    marginTop: 10,
-    marginLeft: 10,
-    paddingRight: 20,
-    borderRightWidth: 1,
-    borderRightColor: "#E0E0E0",
-  },
-  weightText: {
-    fontFamily: "Poppins_400Regular",
-    fontSize: 10,
-    position: "absolute",
-    color: "#666666",
-    marginLeft: 30,
-    marginTop: 40,
-  },
-  heightArea: {
-    flexDirection: "row",
-    marginTop: 10,
-    marginLeft: 10,
-    paddingRight: 20,
-    borderRightWidth: 1,
-    borderRightColor: "#E0E0E0",
-  },
-  heightText: {
-    fontFamily: "Poppins_400Regular",
-    position: "absolute",
-    fontSize: 10,
-    color: "#666666",
-    marginLeft: 10,
-    marginTop: 40,
-  },
-  skillsArea: {
-    marginTop: 6,
-    marginRight: 5,
-  },
-  skillsText: {
-    fontFamily: "Poppins_400Regular",
-    fontSize: 10,
-    position: "absolute",
-    color: "#666666",
-    marginTop: 40,
-    marginRight: 5,
   },
   statusBase: {
     marginTop: 30,
     textAlign: "center",
-    color: "#74CB48",
     fontFamily: "Poppins_700Bold",
     fontSize: 20,
-  },
-  infoStatus: {
-    flexDirection: "column",
-    marginLeft: 30,
-  },
-  baseText: {
-    fontFamily: "Poppins_700Bold",
-    fontSize: 15,
-    color: "#74CB48",
-    marginBottom: 7,
-  },
-  baseNumber: {
-    fontFamily: "Poppins_400Regular",
-    fontSize: 15,
-    marginBottom: 7,
-  },
-  progressBar: {
-    width: 100,
-    height: 6,
-    alignItems: "center",
-    marginBottom: 23,
-    borderRadius: 5,
   },
 });
 

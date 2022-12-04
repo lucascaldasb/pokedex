@@ -28,18 +28,24 @@ export default function Home() {
         }}
       >
         <CardHome
+          id="1"
+          color="#74CB48"
           img={require("../assets/1.png")}
           onClick={() => navigation.navigate("Detail")}
         >
           Bulbasaur
         </CardHome>
         <CardHome
+          id="25"
+          color="#F9CF30"
           img={require("../assets/25.png")}
           onClick={() => alert("CLICOU")}
         >
           Pikachu
         </CardHome>
         <CardHome
+          id="4"
+          color="#F57D31"
           img={require("../assets/4.png")}
           onClick={() => alert("CLICOU")}
         >
@@ -49,18 +55,24 @@ export default function Home() {
 
       <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
         <CardHome
+          id="304"
+          color="#B7B9D0"
           img={require("../assets/304.png")}
           onClick={() => alert("CLICOU")}
         >
           Aron
         </CardHome>
         <CardHome
+          id="12"
+          color="#A7B723"
           img={require("../assets/12.png")}
           onClick={() => alert("CLICOU")}
         >
           Butterfree
         </CardHome>
         <CardHome
+          id="132"
+          color="#AAA67F"
           img={require("../assets/132.png")}
           onClick={() => alert("CLICOU")}
         >
@@ -76,18 +88,24 @@ export default function Home() {
         }}
       >
         <CardHome
+          id="92"
+          color="#70559B"
           img={require("../assets/92.png")}
           onClick={() => alert("CLICOU")}
         >
           Gastly
         </CardHome>
         <CardHome
+          id="152"
+          color="#FB5584"
           img={require("../assets/152.png")}
           onClick={() => alert("CLICOU")}
         >
           Mew
         </CardHome>
         <CardHome
+          id="7"
+          color="#6493EB"
           img={require("../assets/7.png")}
           onClick={() => alert("CLICOU")}
         >
