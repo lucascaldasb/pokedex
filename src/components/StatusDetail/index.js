@@ -68,7 +68,7 @@ export default function StatusDetail(props) {
 const styles = StyleSheet.create({
   infoStatus: {
     flexDirection: "column",
-    marginLeft: 30,
+    marginLeft: 20,
   },
   baseText: {
     fontFamily: "Poppins_700Bold",

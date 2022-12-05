@@ -8,14 +8,14 @@ export default function AboutDetail(props) {
       <View>
         <View style={styles.weightArea}>
           <FontAwesome5 name="weight" size={20} color="black" />
-          <Text style={{ marginLeft: 8 }}>{props.weight} kg</Text>
+          <Text style={{ marginLeft: 8 }}>{props.weight / 10} kg</Text>
         </View>
-        <Text style={styles.weightText}>Width</Text>
+        <Text style={styles.weightText}>Weight</Text>
       </View>
       <View>
         <View style={styles.heightArea}>
           <FontAwesome5 name="ruler-vertical" size={20} color="black" />
-          <Text style={{ marginLeft: 8 }}>{props.height} m</Text>
+          <Text style={{ marginLeft: 8 }}>{props.height / 10} m</Text>
         </View>
         <Text style={styles.heightText}>Height</Text>
       </View>

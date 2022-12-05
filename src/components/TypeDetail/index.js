@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   firstPower: {
     fontFamily: "Poppins_700Bold",
     fontSize: 15,
-    marginRight: 16,
+    marginHorizontal: 20,
     color: "#fff",
     width: 60,
     height: 25,
