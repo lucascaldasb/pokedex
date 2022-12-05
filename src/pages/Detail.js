@@ -98,7 +98,7 @@ function Detail({ navigation }) {
                 weight={pokemon.weight}
                 height={pokemon.height}
                 Fskill={pokemon.abilities[0].ability.name}
-                Sskill={pokemon.abilities[1].ability.name}
+                Sskill={pokemon.abilities[1]?.ability.name}
               />
               <Text
                 style={styles.statusBase}

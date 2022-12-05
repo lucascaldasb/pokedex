@@ -11,6 +11,7 @@ export default function Home() {
   const { navigate } = useNavigation();
 
   const [pokemons, setPokemons] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   function handleNavigation(pokemonId) {
     navigate("Detail", {
@@ -34,10 +35,23 @@ export default function Home() {
           };
         })
       );
-      setPokemons(payLoadPokemons);
+      if (searchText === "") {
+        setPokemons(payLoadPokemons);
+      } else {
+        setPokemons(
+          payLoadPokemons.filter((item) => {
+            if (item.name.indexOf(searchText.toLocaleLowerCase()) > -1) {
+              return true;
+            } else {
+              return false;
+            }
+          })
+        );
+      }
+      // setPokemons(payLoadPokemons);
     }
     getAllPokemons();
-  }, []);
+  }, [searchText]);
 
   async function getMoreInfo(url) {
     const response = await api.get(url);
@@ -54,7 +68,11 @@ export default function Home() {
       <View style={styles.header}>
         <View style={styles.inputArea}>
           <Feather name="search" size={20} color="#666666" />
-          <TextInput placeholder="Search" style={styles.input} />
+          <TextInput
+            placeholder="Search"
+            style={styles.input}
+            onChangeText={(t) => setSearchText(t)}
+          />
         </View>
       </View>
 
