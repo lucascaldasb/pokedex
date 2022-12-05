@@ -1,18 +1,111 @@
-import React from "react";
-import { View, StyleSheet, TextInput, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, TextInput, FlatList } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
+import api from "../service/api";
 import CardHome from "../components/CardHome/index";
+
+function getTypeColor(type) {
+  switch (type) {
+    case "normal":
+      return "#AAA67F";
+      break;
+    case "rock":
+      return "#B69E31";
+      break;
+    case "ghost":
+      return "#70559B";
+      break;
+    case "fighting":
+      return "#C12239";
+      break;
+    case "steel":
+      return "#B7B9D0";
+      break;
+    case "flying":
+      return "#A891EC";
+      break;
+    case "water":
+      return "#6493EB";
+      break;
+    case "poison":
+      return "#A43E9E";
+      break;
+    case "grass":
+      return "#74CB48";
+      break;
+    case "ground":
+      return "#DFC16B";
+      break;
+    case "psychic":
+      return "#FB5584";
+      break;
+    case "bug":
+      return "#A7B723";
+      break;
+    case "ice":
+      return "#9AD6DF";
+      break;
+    case "fire":
+      return "#F57D31";
+      break;
+    case "dark":
+      return "#75574C";
+      break;
+    case "eletric":
+      return "#F9CF30";
+      break;
+    case "fairy":
+      return "#E69EAC";
+      break;
+    case "dragon":
+      return "#7037FF";
+      break;
+    default:
+      return "black";
+  }
+}
 
 export default function Home() {
   const navigation = useNavigation();
 
+  const [pokemons, setPokemons] = useState([]);
+
+  useEffect(() => {
+    async function getAllPokemons() {
+      const response = await api.get("/pokemon");
+      const { results } = response.data;
+
+      const payLoadPokemons = await Promise.all(
+        results.map(async (pokemon) => {
+          const { id, types } = await getMoreInfo(pokemon.url);
+
+          return {
+            name: pokemon.name,
+            id,
+            types,
+          };
+        })
+      );
+      setPokemons(payLoadPokemons);
+      console.log(payLoadPokemons);
+    }
+    getAllPokemons();
+  }, []);
+
+  async function getMoreInfo(url) {
+    const response = await api.get(url);
+    const { id, types } = await response.data;
+
+    return {
+      id,
+      types,
+    };
+  }
+
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      style={{ backgroundColor: "#f7f7f7" }}
-    >
+    <View style={{ backgroundColor: "#f7f7f7" }}>
       <View style={styles.header}>
         <View style={styles.inputArea}>
           <Feather name="search" size={20} color="#666666" />
@@ -20,99 +113,27 @@ export default function Home() {
         </View>
       </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-around",
-          paddingBottom: 8,
-        }}
-      >
-        <CardHome
-          id="1"
-          color="#74CB48"
-          img={require("../assets/1.png")}
-          onClick={() => navigation.navigate("Detail")}
-        >
-          Bulbasaur
-        </CardHome>
-        <CardHome
-          id="25"
-          color="#F9CF30"
-          img={require("../assets/25.png")}
-          onClick={() => alert("CLICOU")}
-        >
-          Pikachu
-        </CardHome>
-        <CardHome
-          id="4"
-          color="#F57D31"
-          img={require("../assets/4.png")}
-          onClick={() => alert("CLICOU")}
-        >
-          Charmander
-        </CardHome>
+      <View>
+        <FlatList
+          style={{ marginHorizontal: 30 }}
+          showsVerticalScrollIndicator={false}
+          numColumns={3}
+          data={pokemons}
+          keyExtractor={(pokemon) => pokemon.id.toString()}
+          renderItem={({ item: pokemon }) => (
+            <CardHome
+              name={pokemon.name}
+              id={pokemon.id}
+              color={getTypeColor(pokemon.types.name)}
+              img={{
+                url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`,
+              }}
+              onClick={() => navigation.navigate("Detail")}
+            />
+          )}
+        />
       </View>
-
-      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-        <CardHome
-          id="304"
-          color="#B7B9D0"
-          img={require("../assets/304.png")}
-          onClick={() => alert("CLICOU")}
-        >
-          Aron
-        </CardHome>
-        <CardHome
-          id="12"
-          color="#A7B723"
-          img={require("../assets/12.png")}
-          onClick={() => alert("CLICOU")}
-        >
-          Butterfree
-        </CardHome>
-        <CardHome
-          id="132"
-          color="#AAA67F"
-          img={require("../assets/132.png")}
-          onClick={() => alert("CLICOU")}
-        >
-          Ditto
-        </CardHome>
-      </View>
-
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-around",
-          paddingTop: 8,
-        }}
-      >
-        <CardHome
-          id="92"
-          color="#70559B"
-          img={require("../assets/92.png")}
-          onClick={() => alert("CLICOU")}
-        >
-          Gastly
-        </CardHome>
-        <CardHome
-          id="152"
-          color="#FB5584"
-          img={require("../assets/152.png")}
-          onClick={() => alert("CLICOU")}
-        >
-          Mew
-        </CardHome>
-        <CardHome
-          id="7"
-          color="#6493EB"
-          img={require("../assets/7.png")}
-          onClick={() => alert("CLICOU")}
-        >
-          Squirtle
-        </CardHome>
-      </View>
-    </ScrollView>
+    </View>
   );
 }
 

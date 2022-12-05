@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
-export default function PowerDetail(props) {
+export default function TypeDetail(props) {
   return (
     <View style={styles.powers}>
       <Text style={[styles.firstPower, { backgroundColor: props.color }]}>

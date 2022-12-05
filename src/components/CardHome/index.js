@@ -5,10 +5,10 @@ export default function CardHome(props) {
   return (
     <TouchableOpacity onPress={props.onClick}>
       <View style={[styles.container, { borderColor: props.color }]}>
-        <Text style={[styles.idText, { color: props.color }]}>{props.id}</Text>
+        <Text style={[styles.idText, { color: props.color }]}>#{props.id}</Text>
         <Image source={props.img} style={styles.homecardImg} />
         <View style={[styles.homecardArea, { backgroundColor: props.color }]}>
-          <Text style={styles.homecardText}>{props.children}</Text>
+          <Text style={styles.homecardText}>{props.name}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -26,10 +26,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 8,
     justifyContent: "space-between",
+    marginLeft: 5,
+    marginBottom: 7,
   },
   homecardImg: {
-    width: 65,
-    height: 65,
+    width: 70,
+    height: 70,
   },
   homecardArea: {
     width: "107%",

@@ -1,10 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { ProgressBar } from "react-native-paper";
-
 import AboutDetail from "../components/AboutDetail/index";
-import PowerDetail from "../components/PowerDetail/index";
+import TypeDetail from "../components/TypeDetail/index";
 import StatusDetail from "../components/StatusDetail/index";
 
 function Detail({ navigation }) {
@@ -17,7 +14,7 @@ function Detail({ navigation }) {
       <View style={[styles.headerImg, { backgroundColor: "#74CB48" }]}>
         <View style={{ flexDirection: "row", margin: 24 }}>
           <Text style={styles.pokemonName}>Bulbasaur</Text>
-          <Text style={styles.pokemonId}>#001</Text>
+          <Text style={styles.pokemonId}>#1</Text>
         </View>
         <Image
           source={require("../assets/bgpokeball.png")}
@@ -33,8 +30,8 @@ function Detail({ navigation }) {
               justifyContent: "center",
             }}
           >
-            <PowerDetail color="#74CB48">Grass</PowerDetail>
-            <PowerDetail color="#A43E9E">Poison</PowerDetail>
+            <TypeDetail color="#74CB48">Grass</TypeDetail>
+            <TypeDetail color="#A43E9E">Poison</TypeDetail>
           </View>
 
           <Text style={[styles.about, { color: "#74CB48" }]}>About</Text>
