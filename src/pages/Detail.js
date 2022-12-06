@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, Alert } from "react-native";
 import AboutDetail from "../components/AboutDetail/index";
 import TypeDetail from "../components/TypeDetail/index";
 import StatusDetail from "../components/StatusDetail/index";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import api from "../service/api";
 import getTypeColor from "../style/colors";
 

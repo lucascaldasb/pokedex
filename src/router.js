@@ -1,8 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { TouchableOpacity, Image } from "react-native";
-import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Home from "./pages/Home.js";
 import Detail from "./pages/Detail.js";
@@ -25,21 +24,6 @@ export default function Routes() {
               fontFamily: "Poppins_700Bold",
               fontSize: 24,
             },
-            headerRight: () => (
-              <>
-                <TouchableOpacity style={{ marginRight: 10 }}>
-                  <FontAwesome name="sort-alpha-asc" size={24} color="black" />
-                </TouchableOpacity>
-
-                <TouchableOpacity style={{ marginRight: 10 }}>
-                  <FontAwesome
-                    name="sort-numeric-asc"
-                    size={24}
-                    color="black"
-                  />
-                </TouchableOpacity>
-              </>
-            ),
             headerLeft: () => (
               <MaterialCommunityIcons
                 name="pokeball"

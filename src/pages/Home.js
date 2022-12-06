@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, TextInput, FlatList } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 
 import api from "../service/api";
 import CardHome from "../components/CardHome/index";
@@ -48,10 +55,25 @@ export default function Home() {
           })
         );
       }
-      // setPokemons(payLoadPokemons);
     }
     getAllPokemons();
   }, [searchText]);
+
+  const handleStrOrderClick = () => {
+    let newList = [...pokemons];
+
+    newList.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
+
+    setPokemons(newList);
+  };
+
+  const handleNumOrderClick = () => {
+    let newList = [...pokemons];
+
+    newList.sort((a, b) => (a.id > b.id ? 1 : b.id > a.id ? -1 : 0));
+
+    setPokemons(newList);
+  };
 
   async function getMoreInfo(url) {
     const response = await api.get(url);
@@ -74,6 +96,19 @@ export default function Home() {
             onChangeText={(t) => setSearchText(t)}
           />
         </View>
+        <TouchableOpacity
+          style={{ marginRight: 10, marginLeft: 20 }}
+          onPress={handleStrOrderClick}
+        >
+          <FontAwesome name="sort-alpha-asc" size={24} color="black" />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{ marginRight: 10 }}
+          onPress={handleNumOrderClick}
+        >
+          <FontAwesome name="sort-numeric-asc" size={24} color="black" />
+        </TouchableOpacity>
       </View>
 
       <View>
@@ -113,12 +148,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    width: "98%",
+    width: "70%",
     backgroundColor: "#fff",
     elevation: 2,
     paddingHorizontal: 10,
     height: 30,
     borderRadius: 10,
+    marginLeft: 20,
   },
   input: {
     fontFamily: "Poppins_400Regular",
